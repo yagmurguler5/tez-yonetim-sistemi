@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 
 import { Department } from '../../department/entities/department.entity';
+import { StudentProfile } from '../../student-profile/entities/student-profile.entity';
 
 @Entity('faculties')
 export class Faculty {
@@ -33,6 +34,12 @@ export class Faculty {
 
   @OneToMany(() => Department, (department) => department.faculty)
   departments!: Department[];
+
+  @OneToMany(
+    () => StudentProfile,
+    (studentProfile) => studentProfile.faculty,
+  )
+  studentProfiles!: StudentProfile[];
 
   @CreateDateColumn()
   createdAt!: Date;

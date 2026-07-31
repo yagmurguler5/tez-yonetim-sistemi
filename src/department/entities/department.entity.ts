@@ -3,12 +3,14 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { Faculty } from '../../faculty/entities/faculty.entity';
+import { StudentProfile } from '../../student-profile/entities/student-profile.entity';
 
 @Entity('departments')
 export class Department {
@@ -37,6 +39,12 @@ export class Department {
     name: 'faculty_id',
   })
   faculty!: Faculty;
+
+  @OneToMany(
+    () => StudentProfile,
+    (studentProfile) => studentProfile.department,
+  )
+  studentProfiles!: StudentProfile[];
 
   @CreateDateColumn()
   createdAt!: Date;

@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { User } from '../../user/entities/user.entity';
+import { Faculty } from '../../faculty/entities/faculty.entity';
 import { Department } from '../../department/entities/department.entity';
 
 import { ProgramType } from '../enums/program-type.enum';
@@ -27,10 +28,10 @@ export class StudentProfile {
   studentNumber!: string;
 
   @Column({
-    length: 20,
     nullable: true,
+    length: 20,
   })
-  phone!: string;
+  phone?: string;
 
   @Column({
     type: 'enum',
@@ -38,7 +39,9 @@ export class StudentProfile {
   })
   programType!: ProgramType;
 
-  @Column()
+  @Column({
+    default: 1,
+  })
   currentSemester!: number;
 
   @Column({
@@ -48,11 +51,19 @@ export class StudentProfile {
   })
   status!: StudentStatus;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, {
+    eager: true,
+  })
   @JoinColumn({
     name: 'user_id',
   })
   user!: User;
+
+  @ManyToOne(() => Faculty)
+  @JoinColumn({
+    name: 'faculty_id',
+  })
+  faculty!: Faculty;
 
   @ManyToOne(() => Department)
   @JoinColumn({

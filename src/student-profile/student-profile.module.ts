@@ -6,6 +6,7 @@ import { StudentProfileService } from './student-profile.service';
 
 import { StudentProfile } from './entities/student-profile.entity';
 import { User } from '../user/entities/user.entity';
+import { Faculty } from '../faculty/entities/faculty.entity';
 import { Department } from '../department/entities/department.entity';
 
 @Module({
@@ -13,6 +14,7 @@ import { Department } from '../department/entities/department.entity';
     TypeOrmModule.forFeature([
       StudentProfile,
       User,
+      Faculty,
       Department,
     ]),
   ],
