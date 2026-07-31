@@ -5,6 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RoleModule } from './role/role.module';
+import { UserModule } from './user/user.module';
+import { FacultyModule } from './faculty/faculty.module';
+import { DepartmentModule } from './department/department.module';
+import { StudentProfileModule } from './student-profile/student-profile.module';
 
 @Module({
   imports: [
@@ -32,6 +36,14 @@ import { RoleModule } from './role/role.module';
     }),
 
     RoleModule,
+
+    UserModule,
+
+    FacultyModule,
+
+    DepartmentModule,
+
+    StudentProfileModule,
   ],
 
   controllers: [AppController],
