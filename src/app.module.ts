@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { FacultyModule } from './faculty/faculty.module';
 import { DepartmentModule } from './department/department.module';
 import { StudentProfileModule } from './student-profile/student-profile.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -44,6 +45,8 @@ import { StudentProfileModule } from './student-profile/student-profile.module';
     DepartmentModule,
 
     StudentProfileModule,
+
+    AuthModule,
   ],
 
   controllers: [AppController],
