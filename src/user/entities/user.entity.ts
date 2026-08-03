@@ -11,6 +11,7 @@ import {
 
 import { Role } from '../../role/entities/role.entity';
 import { StudentProfile } from '../../student-profile/entities/student-profile.entity';
+import { Advisor } from '../../advisor/entities/advisor.entity';
 
 @Entity('users')
 export class User {
@@ -53,6 +54,12 @@ export class User {
     (studentProfile) => studentProfile.user,
   )
   studentProfile!: StudentProfile;
+
+  @OneToOne(
+    () => Advisor,
+    (advisor) => advisor.user,
+  )
+  advisor!: Advisor;
 
   @CreateDateColumn()
   createdAt!: Date;

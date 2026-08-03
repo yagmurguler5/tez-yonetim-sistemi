@@ -1,0 +1,5 @@
+export enum ThesisType {
+  UNDERGRADUATE = 'UNDERGRADUATE',
+  MASTER = 'MASTER',
+  DOCTORATE = 'DOCTORATE',
+}

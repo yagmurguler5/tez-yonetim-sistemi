@@ -11,61 +11,49 @@ import {
 } from 'typeorm';
 
 import { User } from '../../user/entities/user.entity';
-import { Faculty } from '../../faculty/entities/faculty.entity';
 import { Department } from '../../department/entities/department.entity';
 import { Thesis } from '../../thesis/entities/thesis.entity';
 
-import { ProgramType } from '../enums/program-type.enum';
-import { StudentStatus } from '../enums/student-status.enum';
-
-@Entity('student_profiles')
-export class StudentProfile {
+@Entity('advisors')
+export class Advisor {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({
-    unique: true,
-    length: 20,
+    length: 50,
   })
-  studentNumber!: string;
+  academicTitle!: string;
 
   @Column({
+    length: 20,
     nullable: true,
-    length: 20,
   })
-  phone?: string;
+  phone!: string;
 
   @Column({
-    type: 'enum',
-    enum: ProgramType,
+    length: 100,
+    nullable: true,
   })
-  programType!: ProgramType;
+  office!: string;
 
   @Column({
-    default: 1,
+    default: 10,
   })
-  currentSemester!: number;
+  maxStudentCount!: number;
 
   @Column({
-    type: 'enum',
-    enum: StudentStatus,
-    default: StudentStatus.ACTIVE,
+    default: true,
   })
-  status!: StudentStatus;
+  isActive!: boolean;
 
-  @OneToOne(() => User, {
-    eager: true,
-  })
+  @OneToOne(
+    () => User,
+    (user) => user.advisor,
+  )
   @JoinColumn({
     name: 'user_id',
   })
   user!: User;
-
-  @ManyToOne(() => Faculty)
-  @JoinColumn({
-    name: 'faculty_id',
-  })
-  faculty!: Faculty;
 
   @ManyToOne(() => Department)
   @JoinColumn({
@@ -75,7 +63,7 @@ export class StudentProfile {
 
   @OneToMany(
     () => Thesis,
-    (thesis) => thesis.student,
+    (thesis) => thesis.advisor,
   )
   theses!: Thesis[];
 

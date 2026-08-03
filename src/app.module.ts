@@ -10,6 +10,9 @@ import { FacultyModule } from './faculty/faculty.module';
 import { DepartmentModule } from './department/department.module';
 import { StudentProfileModule } from './student-profile/student-profile.module';
 import { AuthModule } from './auth/auth.module';
+import { AdvisorModule } from './advisor/advisor.module';
+import { ThesisModule } from './thesis/thesis.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -47,6 +50,12 @@ import { AuthModule } from './auth/auth.module';
     StudentProfileModule,
 
     AuthModule,
+
+    AdvisorModule,
+
+    ThesisModule,
+
+    DashboardModule,
   ],
 
   controllers: [AppController],
